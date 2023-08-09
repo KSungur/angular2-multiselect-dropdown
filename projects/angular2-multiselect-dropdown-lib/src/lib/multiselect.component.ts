@@ -300,7 +300,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
     private onChangeCallback: (_: any) => void = noop;
 
     writeValue(value: any) {
-        if (value !== undefined && value !== null && value !== '') {
+        if (value !== undefined && value !== null && value !== '' && value?.length) {
             if (this.settings.singleSelection) {
                 if (this.settings.groupBy) {
                     this.groupedData = this.transformData(this.data, this.settings.groupBy);
