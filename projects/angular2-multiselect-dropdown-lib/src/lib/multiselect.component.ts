@@ -213,14 +213,15 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         this.searchTerm$.next((<HTMLInputElement>evt.target).value);
     }
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.data && !changes.data.firstChange) {
-            if (this.settings.groupBy) {
-                this.groupedData = this.transformData(this.data, this.settings.groupBy);
-                if (this.data.length == 0) {
-                    this.selectedItems = [];
-                }
-                this.groupCachedItems = this.cloneArray(this.groupedData);
+       if (this.settings.groupBy) {
+            this.groupedData = this.transformData(this.data, this.settings.groupBy);
+            if (this.data.length == 0) {
+                this.selectedItems = [];
             }
+            this.groupCachedItems = this.cloneArray(this.groupedData);
+        }
+
+        if (changes.data && !changes.data.firstChange) {
             this.cachedItems = this.cloneArray(this.data);
         }
         if (changes.settings && !changes.settings.firstChange) {
